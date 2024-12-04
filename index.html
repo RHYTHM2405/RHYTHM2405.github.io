@@ -446,7 +446,7 @@ https://www.tooplate.com/view/2120-ben-resume
         	</div><!-- row -->
         </div><!-- container -->
     </section>
-
+    
 
      <section class="contact section-padding pt-0" id="contact">
       <div class="container">
@@ -472,12 +472,10 @@ https://www.tooplate.com/view/2120-ben-resume
               <button type="button" class="form-control" id="submit-button" name="submit">Send</button>
           </form>
           
-          <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
           <script>
               // Initialize EmailJS with your user ID (Public Key)
-              (function () {
-                  emailjs.init("XvTJMswXgLihcsxzy"); // Replace YOUR_USER_ID with your actual public key
-              })();
+              emailjs.init("XvTJMswXgLihcsxzy"); // Replace YOUR_USER_ID with your actual public key
           
               document.getElementById("submit-button").addEventListener("click", function () {
                   const fullName = document.getElementById("cf-name").value;
@@ -490,14 +488,15 @@ https://www.tooplate.com/view/2120-ben-resume
                           from_email: email,
                           message: message
                       };
+          
                       emailjs.send("service_n0b80on", "template_uk0cvzi", templateParams)
-                      .then(function(response) {
-                          alert("Message sent successfully!");
-                          console.log("Success:", response);
-                      }, function(error) {
-                          console.error("Error details:", error);
-                          alert("Failed to send the message. Error: " + JSON.stringify(error));
-                      });
+                          .then(function(response) {
+                              alert("Message sent successfully!");
+                              console.log("Success:", response);
+                          }, function(error) {
+                              console.error("Error details:", error);
+                              alert("Failed to send the message. Error: " + JSON.stringify(error));
+                          });
                   } else {
                       alert("Please fill out all fields.");
                   }
