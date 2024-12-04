@@ -336,7 +336,7 @@ https://www.tooplate.com/view/2120-ben-resume
                           <a href="https://github.com/RHYTHM2405/Inter-IIT-TechMeet-12.0-JLR" target="_blank" style="text-decoration: none; font-size: 14px; color: #007bff; margin-right: 30px;">
                             <i class="fab fa-github"></i> GitHub
                           </a>
-                          <a href="https://drive.google.com/file/d/1CgmqNZBx759ycRXkCM2bvtVh_118EwhS/preview" target="_blank" style="text-decoration: none; font-size: 14px; color: #007bff; margin-right: 10px;">
+                          <a href="https://drive.google.com/file/d/1CgmqNZBx759ycRXkCM2bvtVh_118EwhS/preview" target="_blank" style="text-decoration: none; font-size: 14px; color: #007bff; margin-right: 30px;">
                             <i class="fab fa-github"></i> Certificate
                           </a>
                         </div>
@@ -427,7 +427,7 @@ https://www.tooplate.com/view/2120-ben-resume
                           </button>
                         </h2>
                         <!-- GitHub Link -->
-                        <a href="https://app-backend-zeamr6jigmwxq.azurewebsites.net/" target="_blank" style="text-decoration: none; font-size: 14px; color: #007bff; margin-right: 40px;">
+                        <a href="https://app-backend-zeamr6jigmwxq.azurewebsites.net/" target="_blank" style="text-decoration: none; font-size: 14px; color: #007bff; margin-right: 30px;">
                           <i class="fab fa-github"></i> Deployed on Azure
                         </a>
                       </div>
@@ -490,15 +490,14 @@ https://www.tooplate.com/view/2120-ben-resume
                           from_email: email,
                           message: message
                       };
-          
                       emailjs.send("service_n0b80on", "template_uk0cvzi", templateParams)
-                          .then(function(response) {
-                              alert("Message sent successfully!");
-                              console.log("Success:", response);
-                          }, function(error) {
-                              alert("Failed to send the message. Please try again.");
-                              console.error("Error:", error);
-                          });
+                      .then(function(response) {
+                          alert("Message sent successfully!");
+                          console.log("Success:", response);
+                      }, function(error) {
+                          console.error("Error details:", error);
+                          alert("Failed to send the message. Error: " + JSON.stringify(error));
+                      });
                   } else {
                       alert("Please fill out all fields.");
                   }
