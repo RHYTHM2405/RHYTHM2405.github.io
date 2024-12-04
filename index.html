@@ -453,48 +453,58 @@ https://www.tooplate.com/view/2120-ben-resume
         <div class="row">
 
           <div class="col-lg-6 col-md-6 col-12">
-            <form id="contact-form">
-              <input type="text" id="full-name" placeholder="Full Name" required>
-              <input type="email" id="email" placeholder="Your Email" required>
-              <textarea id="message" placeholder="Message" required></textarea>
-              <button type="button" id="submit-button">Send</button>
-            </form>
-            
-            <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-            <script>
-              // Initialize EmailJS with your user ID
+            <form action="#" method="get" class="contact-form webform" role="form">
+              <div class="form-group d-flex flex-column-reverse">
+                  <input type="text" class="form-control" name="cf-name" id="cf-name" placeholder="Your Name">
+                  <label for="cf-name" class="webform-label">Full Name</label>
+              </div>
+          
+              <div class="form-group d-flex flex-column-reverse">
+                  <input type="email" class="form-control" name="cf-email" id="cf-email" placeholder="Your Email">
+                  <label for="cf-email" class="webform-label">Your Email</label>
+              </div>
+          
+              <div class="form-group d-flex flex-column-reverse">
+                  <textarea class="form-control" rows="5" name="cf-message" id="cf-message" placeholder="Your Message"></textarea>
+                  <label for="cf-message" class="webform-label">Message</label>
+              </div>
+          
+              <button type="button" class="form-control" id="submit-button" name="submit">Send</button>
+          </form>
+          
+          <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+          <script>
+              // Initialize EmailJS with your user ID (Public Key)
               (function () {
-                emailjs.init("XvTJMswXgLihcsxzy");
+                  emailjs.init("XvTJMswXgLihcsxzy"); // Replace YOUR_USER_ID with your actual public key
               })();
-            
-              document.getElementById("submit-button").addEventListener("click", () => {
-                const fullName = document.getElementById("full-name").value;
-                const email = document.getElementById("email").value;
-                const message = document.getElementById("message").value;
-            
-                if (fullName && email && message) {
-                  const templateParams = {
-                    from_name: fullName,
-                    from_email: email,
-                    message: message,
-                  };
-            
-                  emailjs
-                    .send("service_n0b80on", "template_gr28f8f", templateParams)
-                    .then(
-                      (response) => {
-                        alert("Message sent successfully!");
-                      },
-                      (error) => {
-                        console.error("Failed to send message:", error);
-                        alert("Failed to send the message. Please try again.");
-                      }
-                    );
-                } else {
-                  alert("Please fill out all fields.");
-                }
+          
+              document.getElementById("submit-button").addEventListener("click", function () {
+                  const fullName = document.getElementById("cf-name").value;
+                  const email = document.getElementById("cf-email").value;
+                  const message = document.getElementById("cf-message").value;
+          
+                  if (fullName && email && message) {
+                      const templateParams = {
+                          from_name: fullName,
+                          from_email: email,
+                          message: message
+                      };
+          
+                      emailjs.send("service_n0b80on", "template_uk0cvzi", templateParams)
+                          .then(function(response) {
+                              alert("Message sent successfully!");
+                              console.log("Success:", response);
+                          }, function(error) {
+                              alert("Failed to send the message. Please try again.");
+                              console.error("Error:", error);
+                          });
+                  } else {
+                      alert("Please fill out all fields.");
+                  }
               });
-            </script>
+          </script>
+          
             
           </div>
 
