@@ -276,7 +276,7 @@ https://www.tooplate.com/view/2120-ben-resume
                     <h3 class="mb-5">Projects</h3>
 
                     <div class="accordion" id="accordionExample">
-                      <div class="card">
+                      <div class="card" data-order="1" data-hidden="false">  <!-- Rover -->
                         
                         <div class="card-header" id="headingOne" style="display: flex; align-items: center;">
                           <h2 class="mb-0" style="margin: 0; flex-grow: 1;">
@@ -311,7 +311,7 @@ https://www.tooplate.com/view/2120-ben-resume
                         </div>
                       </div>
 
-                      <div class="card">
+                      <div class="card" data-order="2" data-hidden="true">  <!-- Drone -->
                         
                         <div class="card-header" id="headingTwo" style="display: flex; align-items: center;">
                           <h2 class="mb-0" style="margin: 0; flex-grow: 1;">
@@ -339,7 +339,8 @@ https://www.tooplate.com/view/2120-ben-resume
                         </div>
                       </div>
 
-                      <div class="card">
+                      <div class="card" data-order="3" data-hidden="true">  <!-- JLR -->
+
                         <div class="card-header" id="headingThree" style="display: flex; align-items: center;">
                           <h2 class="mb-0" style="margin: 0; flex-grow: 1;">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -373,7 +374,8 @@ https://www.tooplate.com/view/2120-ben-resume
                         </div>
                       </div>
 
-                      <div class="card">
+                      <div class="card" data-order="4" data-hidden="false">  <!-- IMage Retrieval -->
+
                         
 
                         <div class="card-header" id="headingFour" style="display: flex; align-items: center;">
@@ -414,7 +416,8 @@ https://www.tooplate.com/view/2120-ben-resume
                       
                       
 
-                    <div class="card">
+                    <div class="card" data-order="5" data-hidden="false">  <!-- Emotune -->
+
                      
                       <div class="card-header" id="headingFive" style="display: flex; align-items: center;">
                         <h2 class="mb-0" style="margin: 0; flex-grow: 1;">
@@ -437,7 +440,8 @@ https://www.tooplate.com/view/2120-ben-resume
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" data-order="6" data-hidden="false">  <!-- Azure Chatbot -->
+
                       <div class="card-header" id="headingSix" style="display: flex; align-items: center;">
                         <h2 class="mb-0" style="margin: 0; flex-grow: 1;">
                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
@@ -566,6 +570,23 @@ https://www.tooplate.com/view/2120-ben-resume
      <script src="js/smoothscroll.js"></script>
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/custom.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("accordionExample");
+    const cards = Array.from(container.children);
+
+    cards
+      .filter(card => card.dataset.hidden !== "true")   // hide flagged
+      .sort((a, b) => (a.dataset.order || 0) - (b.dataset.order || 0))
+      .forEach(card => container.appendChild(card));
+
+    // remove hidden ones from DOM
+    cards
+      .filter(card => card.dataset.hidden === "true")
+      .forEach(card => card.remove());
+  });
+</script>
 
 </body>
 </html>
